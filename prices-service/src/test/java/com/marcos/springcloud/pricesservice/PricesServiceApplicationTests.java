@@ -37,9 +37,9 @@ class PricesServiceApplicationTests {
 		
 		String priceListIdExpected = "1";
 		
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/prices?productId=35455&brandId=1&date=2020-06-14-10.00.00")
-				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.priceList").value(priceListIdExpected));
+		String url = "/api/prices?productId=35455&brandId=1&date=2020-06-14-10.00.00";
+		
+		testWithURLAndPriceListId(url, priceListIdExpected);
 	}
 	
 	/**
@@ -57,9 +57,9 @@ class PricesServiceApplicationTests {
 
 		String priceListIdExpected = "2";
 		
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/prices?productId=35455&brandId=1&date=2020-06-14-16.00.00")
-				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.priceList").value(priceListIdExpected));
+		String url = "/api/prices?productId=35455&brandId=1&date=2020-06-14-16.00.00";
+		
+		testWithURLAndPriceListId(url, priceListIdExpected);
 	}
 	
 	/**
@@ -77,9 +77,9 @@ class PricesServiceApplicationTests {
 
 		String priceListIdExpected = "1";
 		
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/prices?productId=35455&brandId=1&date=2020-06-14-21.00.00")
-				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.priceList").value(priceListIdExpected));
+		String url = "/api/prices?productId=35455&brandId=1&date=2020-06-14-21.00.00";
+		
+		testWithURLAndPriceListId(url, priceListIdExpected);
 	}
 	
 	/**
@@ -97,9 +97,9 @@ class PricesServiceApplicationTests {
 
 		String priceListIdExpected = "3";
 		
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/prices?productId=35455&brandId=1&date=2020-06-15-10.00.00")
-				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.priceList").value(priceListIdExpected));
+		String url = "/api/prices?productId=35455&brandId=1&date=2020-06-15-10.00.00";
+		
+		testWithURLAndPriceListId(url, priceListIdExpected);
 	}
 	
 	/**
@@ -116,8 +116,14 @@ class PricesServiceApplicationTests {
 	void test5() throws Exception {
 		
 		String priceListIdExpected = "4";
+		
+		String url = "/api/prices?productId=35455&brandId=1&date=2020-06-16-21.00.00";
 
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/prices?productId=35455&brandId=1&date=2020-06-16-21.00.00")
+		testWithURLAndPriceListId(url, priceListIdExpected);
+	}
+	
+	private void testWithURLAndPriceListId(String url, String priceListIdExpected) throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get(url)
 				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk())
 				.andExpect(jsonPath("$.priceList").value(priceListIdExpected));
 	}

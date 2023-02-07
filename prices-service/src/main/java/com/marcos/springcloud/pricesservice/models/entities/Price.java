@@ -1,5 +1,6 @@
 package com.marcos.springcloud.pricesservice.models.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import jakarta.persistence.CascadeType;
@@ -13,7 +14,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "prices")
-public class Price {
+public class Price implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
